@@ -1,6 +1,8 @@
 library("tm")
 library("qdapRegex")
 library("syuzhet")
+library("wordcloud")
+library("RColorBrewer")
 
 #read emails
 emails <- readLines("Sent.txt")
@@ -20,17 +22,23 @@ clean_emails <- tm_map(clean_emails, stripWhitespace)
 #Removing unnecessary words
 clean_emails <- tm_map(clean_emails, removeWords, stopwords("english"))
 clean_emails <- tm_map(clean_emails, removeWords, c("subject", "from", "date", "to", "hello", "hi", "sent", "haifa", "email", "will", "message", "attached", "khan", "erin"))
+#stemming words
+clean_emails <- tm_map(clean_emails, stemDocument, language = "english")
 
 #Data frame of 20 most frequent words
 clean_emails_tdm <- TermDocumentMatrix(clean_emails)
 clean_emails_m <- as.matrix(clean_emails_tdm)
 clean_emails_v <- sort(rowSums(clean_emails_m),decreasing=TRUE)
-clean_emails_d <- data.frame(word = names(clean_emails_v),freq=clean_emails_v)
+clean_emails_d <- data.frame(word = names(clean_emails_v),freq = clean_emails_v)
 head(clean_emails_d, 20)
 
 # Plot of 20 most frequent words
 barplot(clean_emails_d[1:20,]$freq, las = 2, names.arg = clean_emails_d[1:20,]$word,
         col ="aquamarine2", main ="10 Most Frequent Words in my Emails", ylab = "Frequencies")
+
+#Word cloud of 50 most frequent words used
+set.seed(111)
+wordcloud(words = clean_emails_d$word, freq = clean_emails_d$freq, max.words = 50, random.order = FALSE, colors = brewer.pal(8, "Pastel2"))
 
 #Number of occurrences of words associated with different emotions
 emotions <- get_nrc_sentiment(as.character(emails))
