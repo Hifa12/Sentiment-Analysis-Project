@@ -21,7 +21,7 @@ This project was created to analyze the language used in sent emails and determi
 * Use Thunderbird to convert to text file
 * Set working directory in R to where text file is saved so that it can be read into R
 ```
-setwd(path_to_textfile)
+setwd("path_to_textfile")
 ```
 #### To run this project in R, download the ZIP file and run the R script in the R console.
 
