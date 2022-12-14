@@ -33,12 +33,11 @@ clean_emails_d <- data.frame(word = names(clean_emails_v),freq = clean_emails_v)
 head(clean_emails_d, 20)
 
 # Plot of 20 most frequent words
-barplot(clean_emails_d[1:20,]$freq, las = 2, names.arg = clean_emails_d[1:20,]$word,
-        col ="aquamarine2", main ="10 Most Frequent Words in my Emails", ylab = "Frequencies")
+barplot(clean_emails_d[1:20,]$freq, las = 2, names.arg = clean_emails_d[1:20,]$word, col ="aquamarine2", main ="20 Most Frequent Words in my Emails", ylab = "Frequencies")
 
-#Word cloud of 50 most frequent words used
+#Word cloud of 100 most frequent words used
 set.seed(111)
-wordcloud(words = clean_emails_d$word, freq = clean_emails_d$freq, max.words = 50, random.order = FALSE, colors = brewer.pal(8, "Pastel2"))
+wordcloud(words = clean_emails_d$word, freq = clean_emails_d$freq, max.words = 100, random.order = FALSE, colors = brewer.pal(8, "Pastel2"))
 
 #Number of occurrences of words associated with different emotions
 emotions <- get_nrc_sentiment(as.character(emails))
