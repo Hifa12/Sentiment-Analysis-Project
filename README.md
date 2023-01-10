@@ -3,7 +3,7 @@
 ## This is R code that I used to plot and visualize the most frequent words used in my sent emails and to perform sentiment analysis.
 
 ### Description
-This project was created to analyze the language used in sent emails and determine what sentiments are conveyed through those emails. It is useful to know this information because it allows insight into how others perceive your emails and if the overall sentiment of the emails is positive or negative. I wanted to create this project to gain insight into my email data and practice working with unstructured data, cleaning, and analyzing data in R.
+This project was created to analyze the language used in sent emails and determine what sentiments are conveyed through those emails. It is useful to know this information because it allows insight into how others perceive your emails and if the overall sentiment of the emails is positive or negative. I wanted to create this project to gain insight into my email data and practice working with unstructured data, data cleaning, and analyzing data in R.
 
 ### Technologies
 * R
